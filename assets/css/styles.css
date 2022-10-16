@@ -89,10 +89,10 @@ font-size: 1.5rem;
 
 }
 
-
+/* Question box styling  */
 .questionContainer {
-    height: 50vh;
-    width: 50vw;
+    height: 70vh;
+    width: 90vw;
     background-color: var(--main);
     display: flex;
     flex-direction: column;
@@ -100,13 +100,16 @@ font-size: 1.5rem;
     justify-content: center;
     position:absolute;
 }
+.timerText {
+    font-size: 1.5rem;
+    
+}
 .questionHead{
     width: 90%;
-    font-size: 20px;
+    font-size: 2rem;
     margin-bottom: 10px;
     font-weight: bolder;
-    border-bottom: solid 1px #555b6e;
-    justify-content: flex-start;
+    border-bottom: solid 1px;
 }
 
 .answersContainer button {
@@ -124,7 +127,8 @@ font-size: 1.5rem;
     padding: 10px;
 }
 
-.resultbox {
+.resultBox {
 font-size: 1.5rem;
-fon
+color: var(--head);
+
 }
