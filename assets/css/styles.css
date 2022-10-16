@@ -24,40 +24,107 @@ body {
     justify-content: center;
 }
 
-.startQuizHeader {
-    color: var(--head);
-    display: flex;
+/* button styling */
+button {
+    box-shadow:inset 0px 1px 0px 0px #fff6af;
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	background-color:#ffec64;
+	border-radius:6px;
+	border:1px solid #ffaa22;
+	display:block;
+	cursor:pointer;
+	color:#333333;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffee66;
     
 }
+
+button:hover {
+    background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+	background-color:#ffab23;
+}
+button:active {
+    position:relative;
+	top:1px;
+}
+
 
 .startQuizBox {
     background-color: var(--main);
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    height: 50vh;
-    width: 50vw;
+    height: 70vh;
+    width: 90vw;
+    min-width: 368px;
     border-radius: var(--radius);
+    padding: 2%;
+}
+.startQuizHeader {
+    color: var(--head);
+    font-size: 3rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
+.rulesList li {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap; 
+    font-style: italic;
+    font-size: 1.5rem;
+    padding: 5px;
+}
 
 .startQuizBtn {
-    background-color: #555b6e;
-    color: #fff;
-    border-radius: var(--radius);
-    height: 20vh;
-    width: 20vw;
-    font-size: 3rem;
-    
+width: 300px;
+height: 40px;
+font-size: 1.5rem;
+
 }
+
 
 .questionContainer {
     height: 50vh;
     width: 50vw;
+    background-color: var(--main);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: var(--main);
     position:absolute;
+}
+.questionHead{
+    width: 90%;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bolder;
+    border-bottom: solid 1px #555b6e;
+    justify-content: flex-start;
+}
+
+.answersContainer button {
+    width: 300px;
+    height: 40px;
+    margin: 20px;
+    font-size: 20px;
+}
+
+.answerBox {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    border-top: solid 1px;
+    padding: 10px;
+}
+
+.resultbox {
+font-size: 1.5rem;
+fon
 }
