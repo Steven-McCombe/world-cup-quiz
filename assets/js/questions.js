@@ -58,7 +58,7 @@ const questions = [
         question: "What year was the first Womens World cup final?",
         choices: ["a. 1991", "b. 1995", "c. 2003", "d. 2019"],
         answer: "a. 1991"
-    }
+    },
     {
         question: "During the 2006 mens final which French player headbutted the Italian Materazzi?",
         choices: ["a. Lilian Thuram", "b. Zinedine Zidane", "c. Patrick Viera", "d. Claude Makelele"],
