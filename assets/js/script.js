@@ -24,6 +24,7 @@ var answerBtn1 = document.getElementById("answerBtn1");
 var answerBtn2 = document.getElementById("answerBtn2");
 var answerBtn3 = document.getElementById("answerBtn3");
 var answerBtn4 = document.getElementById("answerBtn4");
+var userScoreLabel = document.getElementById("userScoreLabel");
 var resultLabel = document.getElementById("resultLabel");
 
 
@@ -78,6 +79,8 @@ function checkIfCorrect() {
         answerBox.style.backgroundColor = "var(--correct)";
         console.log("correctAnswer")
         questionNumber++;
+        UserScore += 10;
+        userScoreLabel.textContent = " Question " + questionNumber + " of " + (questions.length) + "  Score: " + UserScore
         loadQuestions()
     } else if (questions[questionNumber].correctAnswer !== selectedAnswer) {
         quizTime -= 10
@@ -93,7 +96,7 @@ function checkIfCorrect() {
 function endQuiz() {
     console.log("GAAMEEEE OVERRR")
     questionContainer.style.display = "none"
-    
+
 }    
 //Click to start the quiz
 startQuizBtn.addEventListener("click", startQuiz)
