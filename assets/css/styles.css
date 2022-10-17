@@ -58,7 +58,6 @@ button:active {
 .startQuizBox {
     background-color: var(--main);
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -80,7 +79,7 @@ button:active {
     flex-direction: column;
     flex-wrap: wrap; 
     font-style: italic;
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding: 5px;
 }
 
