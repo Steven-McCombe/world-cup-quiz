@@ -4,6 +4,8 @@
     --main: #fff;
     --radius: 10px;
     --contmargin : 20px 10px 20px 10px;
+    --correct : green;
+    --wrong : red;
 }
 
 *,
@@ -125,10 +127,13 @@ font-size: 1.5rem;
     justify-content: center;
     border-top: solid 1px;
     padding: 10px;
+    background-color: var(--main);
+    border-radius: var(--radius);
+    opacity: 75%;
 }
 
 .resultLabel {
 font-size: 1.5rem;
-color: var(--head);
+color: var(--main);
 
 }

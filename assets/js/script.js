@@ -21,6 +21,9 @@ var timeLeft = 60;
 
 //Questions Array
 var questionNumber = 0
+//selected answer
+var selectedAnswer;
+
 
 // Get Elements from HTML
 //start quiz form.
@@ -33,38 +36,82 @@ var startQuizBtn = document.getElementById("startQuizBtn");
 var questionContainer = document.getElementById("questionContainer");
 var timer = document.getElementById("timerText");
 var questionHead = document.getElementById("questionHead");
-var answer1 = document.getElementById("answer1");
-var answer2 = document.getElementById("answer2");
-var answer3 = document.getElementById("answer3");
-var answer4 = document.getElementById("answer4");
+var answerBtn1 = document.getElementById("answerBtn1");
+var answerBtn2 = document.getElementById("answerBtn2");
+var answerBtn3 = document.getElementById("answerBtn3");
+var answerBtn4 = document.getElementById("answerBtn4");
 var resultLabel = document.getElementById("resultLabel");
 
 
 function startQuiz() {
 startQuizBox.style.display ="none"
     questionContainer.style.display = "flex"
-    startQuestions()
+    loadQuestions()
     var startTimer = setInterval(function() {
         quizTime--;
         timerText.textContent = "Time left: " + quizTime + " Seconds.";
         if(quizTime <= 0) {
             clearInterval(startTimer);
             // if (questionIndex < questions.length - 1) {
-            //     gameOver();
-            // }
+            // Need to end the game
         }
     }, 1000); 
     
 }
 
-function startQuestions() {
+
+function loadQuestions() {
     questionHead.textContent = questions[questionNumber].question;
-    answer1.textContent = questions[questionNumber].answerList[0];
-    answer2.textContent = questions[questionNumber].answerList[1];
-    answer3.textContent = questions[questionNumber].answerList[2];
-    answer4.textContent = questions[questionNumber].answerList[3];
+    answerBtn1.textContent = questions[questionNumber].answerList[0];
+    answerBtn2.textContent = questions[questionNumber].answerList[1];
+    answerBtn3.textContent = questions[questionNumber].answerList[2];
+    answerBtn4.textContent = questions[questionNumber].answerList[3];
 }
 
+function selectedAnswer1() {
+    selectedAnswer = 0;
+    console.log(selectedAnswer);
+    checkIfCorrect();
+   
+}
+function selectedAnswer2() {
+    selectedAnswer = 1;
+    console.log(selectedAnswer);
+    checkIfCorrect();
+}
+function selectedAnswer3() {
+    selectedAnswer = 2;
+    console.log(selectedAnswer);
+    checkIfCorrect();
+}
+function selectedAnswer4() {
+    selectedAnswer = 3;
+    console.log(selectedAnswer);
+    checkIfCorrect();
+}
 
+function checkIfCorrect() {
+    if (questions[questionNumber].correctAnswer === selectedAnswer) {
+        resultLabel.textContent = "Correct"
+        answerBox.style.backgroundColor = "var(--correct)";
+        console.log("correctAnswer")
+        questionNumber++;
+        loadQuestions()
+    } else if (questions[questionNumber].correctAnswer !== selectedAnswer) {
+        quizTime -= 10
+        resultLabel.textContent = "Wrong Answer - 10 Seconds"
+        answerBox.style.backgroundColor = "var(--wrong)";
+        questionNumber++;
+        loadQuestions()
+    }
+    }
 
+//Click to start the quiz
 startQuizBtn.addEventListener("click", startQuiz)
+
+
+//Event listeners for the answer button.
+answerBtn1.addEventListener("click", selectedAnswer1)
+answerBtn2.addEventListener("click", selectedAnswer2)
+answerBtn3.addEventListener("click", selectedAnswer3)
+answerBtn4.addEventListener("click", selectedAnswer4)
