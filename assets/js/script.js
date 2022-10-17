@@ -9,7 +9,7 @@ var questionNumber = 0
 var selectedAnswer;
 
 
-// Get Elements from HTML
+// ------------ Get Elements from HTML -----------------
 //start quiz form.
 var startQuizBox = document.getElementById("startQuizBox");
 var startQuizHeader = document.getElementById("startQuizHeader");
@@ -28,6 +28,16 @@ var userScoreLabel = document.getElementById("userScoreLabel");
 var resultLabel = document.getElementById("resultLabel");
 
 
+//endQuiz container form.
+var endQuizContainer = document.getElementById("endQuizContainer");
+var highscoresHeader = document.getElementById("highscoresHeader");
+var youScoredHeader = document.getElementById("youScoredHeader");
+var submitHighscores = document.getElementById("submitHighscores");
+var submitScoreBtn = document.getElementById("submitScoreBtn");
+var highscoresList = document.getElementById("highscoresList");
+var restartQuizBtn = document.getElementById("restartQuizBtn")
+
+// -----------------------functions-----------------------
 function startQuiz() {
 startQuizBox.style.display ="none"
     questionContainer.style.display = "flex"
@@ -94,16 +104,37 @@ function checkIfCorrect() {
     }
 
 function endQuiz() {
+    endQuizContainer.style.display = "flex"
+    youScoredHeader.textContent = "Congratulations you scored: " + UserScore
     console.log("GAAMEEEE OVERRR")
     questionContainer.style.display = "none"
 
-}    
+}   
+
+function restartQuiz() {
+//reseting scores and timers
+resultLabel.textContent = "Go - The clock has started"
+answerBox.style.backgroundColor = "blue";
+userScoreLabel.textContent = "First Question"
+UserScore = 0;
+quizTime = 60;
+timeLeft = 60;
+questionNumber = 0
+selectedAnswer;
+endQuizContainer.style.display = "none"
+startQuiz()   
+}
+
+
+//---------- Event Listeners Here ------------
 //Click to start the quiz
 startQuizBtn.addEventListener("click", startQuiz)
 
 
-//Event listeners for the answer button.
+//Event listeners for the quiz page answer button.
 answerBtn1.addEventListener("click", selectedAnswer1)
 answerBtn2.addEventListener("click", selectedAnswer2)
 answerBtn3.addEventListener("click", selectedAnswer3)
 answerBtn4.addEventListener("click", selectedAnswer4)
+
+restartQuizBtn.addEventListener("click", restartQuiz)
