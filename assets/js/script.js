@@ -1,19 +1,3 @@
-// Start button code. 
-//when i click the start button: 
-    //i want the startQuizBox to hide and the questionContainer to Display. document.getElementById("element").style.display = "none";
-    //I want the timer to start at 60 seconds and decrement
-    //I want the questionContainer to populate with the questions and answers.
-    //When i click an answer i want to evaluate if the answer was correct or wrong.
-        //On correct:
-            //Move to the next question
-            //display correct in the resultsBox
-            //add 1 to the users score
-        //on Wrong.
-            //Move to the next question
-            //display wrong in the resultsbox
-            //dont add to user score
-            //deduct 10 seconds from the timer
-
 //Score Keeping and Timer
 var UserScore = 0;
 var quizTime = 60;
@@ -52,8 +36,9 @@ startQuizBox.style.display ="none"
         timerText.textContent = "Time left: " + quizTime + " Seconds.";
         if(quizTime <= 0) {
             clearInterval(startTimer);
-            // if (questionIndex < questions.length - 1) {
-            // Need to end the game
+            if (questionNumber < questions.length - 1) {
+              endQuiz()
+            }
         }
     }, 1000); 
     
@@ -70,28 +55,25 @@ function loadQuestions() {
 
 function selectedAnswer1() {
     selectedAnswer = 0;
-    console.log(selectedAnswer);
     checkIfCorrect();
    
 }
 function selectedAnswer2() {
     selectedAnswer = 1;
-    console.log(selectedAnswer);
     checkIfCorrect();
 }
 function selectedAnswer3() {
     selectedAnswer = 2;
-    console.log(selectedAnswer);
     checkIfCorrect();
 }
 function selectedAnswer4() {
     selectedAnswer = 3;
-    console.log(selectedAnswer);
     checkIfCorrect();
 }
 
 function checkIfCorrect() {
-    if (questions[questionNumber].correctAnswer === selectedAnswer) {
+
+    if (questions[questionNumber].correctAnswer === selectedAnswer && questionNumber < questions.length - 1) {
         resultLabel.textContent = "Correct"
         answerBox.style.backgroundColor = "var(--correct)";
         console.log("correctAnswer")
@@ -103,9 +85,16 @@ function checkIfCorrect() {
         answerBox.style.backgroundColor = "var(--wrong)";
         questionNumber++;
         loadQuestions()
+    } else {
+       endQuiz()
     }
     }
 
+function endQuiz() {
+    console.log("GAAMEEEE OVERRR")
+    questionContainer.style.display = "none"
+    
+}    
 //Click to start the quiz
 startQuizBtn.addEventListener("click", startQuiz)
 
