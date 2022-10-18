@@ -45,11 +45,9 @@ startQuizBox.style.display ="none"
     var startTimer = setInterval(function() {
         quizTime--;
         timerText.textContent = "Time left: " + quizTime + " Seconds.";
-        if(quizTime <= 0) {
+        if(quizTime <= 10) {
             clearInterval(startTimer);
-            if (questionNumber < questions.length - 1) {
-              endQuiz()
-            }
+            endQuiz()
         }
     }, 1000); 
     
@@ -90,18 +88,19 @@ function checkIfCorrect() {
         console.log("correctAnswer")
         questionNumber++;
         UserScore += 10;
-        userScoreLabel.textContent = " Question " + questionNumber + " of " + (questions.length) + "  Score: " + UserScore
+        userScoreLabel.textContent = " Question " + (questionNumber + 1) + " of " + (questions.length) + "  Score: " + UserScore
         loadQuestions()
     } else if (questions[questionNumber].correctAnswer !== selectedAnswer) {
         quizTime -= 10
         resultLabel.textContent = "Wrong Answer - 10 Seconds"
         answerBox.style.backgroundColor = "var(--wrong)";
         questionNumber++;
+        userScoreLabel.textContent = " Question " + (questionNumber + 1) + " of " + (questions.length) + "  Score: " + UserScore
         loadQuestions()
     } else {
        endQuiz()
     }
-    }
+}
 
 function endQuiz() {
     endQuizContainer.style.display = "flex"
@@ -110,18 +109,21 @@ function endQuiz() {
     questionContainer.style.display = "none"
 
 }   
-
+//function to submit user score to a leaderboard at the end of the quiz
+function submitHighscore(event) {
+event.preventdefault()    
+}
+//function to restart the quiz when the restart button is clicked at the end.
 function restartQuiz() {
-//reseting scores and timers
-resultLabel.textContent = "Go - The clock has started"
-answerBox.style.backgroundColor = "blue";
-userScoreLabel.textContent = "First Question"
-UserScore = 0;
-quizTime = 60;
-timeLeft = 60;
-questionNumber = 0
-selectedAnswer;
-endQuizContainer.style.display = "none"
+    resultLabel.textContent = "Go - The clock has started"
+    answerBox.style.backgroundColor = "blue";
+    userScoreLabel.textContent = "First Question"
+    UserScore = 0;
+    quizTime = 60;
+    timeLeft = 60;
+    questionNumber = 0
+    selectedAnswer;
+    endQuizContainer.style.display = "none"
 startQuiz()   
 }
 
