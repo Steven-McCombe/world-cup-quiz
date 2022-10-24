@@ -8,6 +8,8 @@ var questionNumber = 0
 //selected answer
 var selectedAnswer;
 
+//highscores
+var highScores = JSON.parse(localStorage.getItem("highScores")) || [];
 
 // ------------ Get Elements from HTML -----------------
 //start quiz form.
@@ -33,9 +35,11 @@ var endQuizContainer = document.getElementById("endQuizContainer");
 var highscoresHeader = document.getElementById("highscoresHeader");
 var youScoredHeader = document.getElementById("youScoredHeader");
 var submitHighscores = document.getElementById("submitHighscores");
+var HighscoreName = document.getElementById("highscoreName");
 var submitScoreBtn = document.getElementById("submitScoreBtn");
 var highscoresList = document.getElementById("highscoresList");
 var restartQuizBtn = document.getElementById("restartQuizBtn")
+
 
 // -----------------------functions-----------------------
 function startQuiz() {
@@ -45,7 +49,7 @@ startQuizBox.style.display ="none"
     var startTimer = setInterval(function() {
         quizTime--;
         timerText.textContent = "Time left: " + quizTime + " Seconds.";
-        if(quizTime <= 10) {
+        if(quizTime <= 0) {
             clearInterval(startTimer);
             endQuiz()
         }
@@ -107,12 +111,32 @@ function endQuiz() {
     youScoredHeader.textContent = "Congratulations you scored: " + UserScore
     console.log("GAAMEEEE OVERRR")
     questionContainer.style.display = "none"
-
+    
 }   
 //function to submit user score to a leaderboard at the end of the quiz
-function submitHighscore(event) {
-event.preventdefault()    
+submitScoreBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var highscoreDetails = {
+        Score: UserScore,
+        Name: highscoreName.value,
+    };
+    highScores.push(highscoreDetails);
+    highScores.sort((a, b) => {return b.Score - a.Score});
+    localStorage.setItem('highScores', JSON.stringify(highScores))
+     renderHighscores()
+});
+
+    
+function renderHighscores() {
+    highscoresList.innerHTML = ""
+    for (var i = 0; i < highScores.length; i++) {
+        highscoresList.innerHTML += "<li>" + "Name: " + highScores[i].Name + " Score: " + highScores[i].Score + "</li>";
+    }
 }
+
+    
 //function to restart the quiz when the restart button is clicked at the end.
 function restartQuiz() {
     resultLabel.textContent = "Go - The clock has started"
