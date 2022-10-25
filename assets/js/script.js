@@ -1,3 +1,4 @@
+//------ Declaring global variables here ------
 //Score Keeping and Timer
 var UserScore = 0;
 var quizTime = 60;
@@ -57,7 +58,7 @@ startQuizBox.style.display ="none"
     
 }
 
-
+// Load the questions into the button htmls 
 function loadQuestions() {
     questionHead.textContent = questions[questionNumber].question;
     answerBtn1.textContent = questions[questionNumber].answerList[0];
@@ -65,7 +66,7 @@ function loadQuestions() {
     answerBtn3.textContent = questions[questionNumber].answerList[2];
     answerBtn4.textContent = questions[questionNumber].answerList[3];
 }
-
+// function to gather the selected answer 
 function selectedAnswer1() {
     selectedAnswer = 0;
     checkIfCorrect();
@@ -84,6 +85,7 @@ function selectedAnswer4() {
     checkIfCorrect();
 }
 
+// function to check if the selected answer is correct 
 function checkIfCorrect() {
 
     if (questions[questionNumber].correctAnswer === selectedAnswer && questionNumber < questions.length - 1) {
@@ -105,7 +107,7 @@ function checkIfCorrect() {
        endQuiz()
     }
 }
-
+// function to end the quiz after the time has run out or questions are finished 
 function endQuiz() {
     endQuizContainer.style.display = "flex"
     youScoredHeader.textContent = "Congratulations you scored: " + UserScore
@@ -128,7 +130,9 @@ submitScoreBtn.addEventListener("click", function (event) {
      renderHighscores()
 });
 
-    
+// function to diplay the highscores onto the page 
+
+
 function renderHighscores() {
     highscoresList.innerHTML = ""
     for (var i = 0; i < highScores.length; i++) {
